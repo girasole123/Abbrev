@@ -35,23 +35,41 @@ Start by defining all your abbreviations in a dictionary:
   ```typst
   #abbr("GPU")
   ```
+  Output:
+  ```text
+  GPU
+  ```
 
 - **Full form** (shows the complete text):
   ```typst
   #abbr("GPU", form: "full")
+  ```
+  Output:
+  ```text
+  Graphics Processing Unit
   ```
 
 - **With a suffix** (e.g., plural):
   ```typst
   #abbr("GPU", suffix: "s")
   ```
+  Output:
+  ```text
+  GPUs
+  ```
 ### Step 3: Display the abbreviation list
 Generate an abbreviation list anywhere in your document:
 ```typst
-
 #abbreviation-outline(
   title: [Abbreviations],
 )
+```
+Output:
+```text
+Abbreviations
+GPU → Graphics Processing Unit...................................................................................1, 3, 4
+XML → Extensible Markup Language..............................................................................1, 2, 4
+CPU → Central Processing Unit............................................................................................1
 ```
 
 The default title is "List of abbreviations" — customize it as needed. For example, in French: `title: [Liste des abréviations]`.
