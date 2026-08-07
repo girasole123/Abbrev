@@ -62,7 +62,7 @@ Generate an abbreviation list anywhere in your document:
   title: [Abbreviations],
 )
 ```
-Output:
+Output (page numbers will be aligned to the right correctly):
 
 **Abbreviations**\
 GPU → Graphics Processing Unit...................................................................................1, 3, 4\
