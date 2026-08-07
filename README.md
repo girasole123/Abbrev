@@ -62,9 +62,9 @@ Generate an abbreviation list anywhere in your document:
   title: [Abbreviations],
 )
 ```
-Output (click on the thumbnail to see the preview in full size):
+Output:
+<img width="649" height="84" alt="image" src="https://github.com/user-attachments/assets/d8dd61eb-48ae-47c9-85af-9c3ecb4753d9" />
 
-<img width="59.5" height="84.2" alt="preview-page-1" src="https://github.com/user-attachments/assets/6bdd3565-aac7-4903-8785-70ac93131e40" />
 
 The default title is "List of abbreviations" — customize it as needed. For example, in French: `title: [Liste des abréviations]`.
 
