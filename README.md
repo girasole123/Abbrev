@@ -4,7 +4,17 @@ A **simple Typst package for creating and managing abbreviations**. While more c
 
 ## Installation
 
-[Add installation instructions here — e.g., how to import the package]
+### Local use
+To use the library locally, download `lib.typ` and place it in your document's directory (or any location of your choice). Then add this import statement to your document (adjust the path if needed):
+```typst
+#import "./lib.typ": *
+```
+
+### Import from Typst Universe (not yet available)
+To import the library from Typst Universe, add this to your document:
+```typst
+#import "@preview/abbreviations:0.1.0": *
+```
 
 ## Usage
 
