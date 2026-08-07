@@ -1,2 +1,2 @@
 # Abbreviations
-This Typst package make easy to create and list abbreviations
+This Typst package make easy to create and list abbreviations.
