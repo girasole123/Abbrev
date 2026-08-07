@@ -28,6 +28,7 @@ Start by defining all your abbreviations in a dictionary:
   "XML": "Extensible Markup Language",
   "CPU": "Central Processing Unit",
 ))
+´´´
 
 ### Step 2: Use abbreviations in your document
 - **Short form** (shows the abbreviation):
