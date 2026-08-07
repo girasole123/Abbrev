@@ -64,9 +64,9 @@ Generate an abbreviation list anywhere in your document:
 ```
 Output:
 
-Abbreviations
-GPU → Graphics Processing Unit...................................................................................1, 3, 4
-XML → Extensible Markup Language..............................................................................1, 2, 4
+**Abbreviations**
+GPU → Graphics Processing Unit...................................................................................1, 3, 4\
+XML → Extensible Markup Language..............................................................................1, 2, 4\
 CPU → Central Processing Unit............................................................................................1
 
 
