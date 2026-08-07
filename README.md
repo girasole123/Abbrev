@@ -10,7 +10,7 @@ To use the library locally, download `lib.typ` and place it in your document's d
 #import "./lib.typ": *
 ```
 
-### Import from Typst Universe (not yet available)
+### Import from Typst Universe
 To import the library from Typst Universe, add this to your document:
 ```typst
 #import "@preview/abbrev:0.1.0": *
