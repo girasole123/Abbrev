@@ -62,7 +62,7 @@ Generate an abbreviation list anywhere in your document:
   title: [Abbreviations],
 )
 ```
-Output:
+Output (click on the thumbnail to see the preview in full size):
 
 <img width="59.5" height="84.2" alt="preview-page-1" src="https://github.com/user-attachments/assets/6bdd3565-aac7-4903-8785-70ac93131e40" />
 
