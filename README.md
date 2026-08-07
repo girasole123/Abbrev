@@ -62,13 +62,9 @@ Generate an abbreviation list anywhere in your document:
   title: [Abbreviations],
 )
 ```
-Output (page numbers will be aligned to the right correctly):
+Output:
 
-**Abbreviations**\
-GPU → Graphics Processing Unit...................................................................................1, 3, 4\
-XML → Extensible Markup Language..............................................................................1, 2, 4\
-CPU → Central Processing Unit............................................................................................1
-
+<img width="59.5" height="84.2" alt="preview-page-1" src="https://github.com/user-attachments/assets/6bdd3565-aac7-4903-8785-70ac93131e40" />
 
 The default title is "List of abbreviations" — customize it as needed. For example, in French: `title: [Liste des abréviations]`.
 
