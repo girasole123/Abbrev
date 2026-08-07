@@ -1,4 +1,4 @@
-# Abbreviations
+# Abbrev
 
 A **simple Typst package for creating and managing abbreviations**. While more complex packages exist, this one prioritizes ease of use and adapts to any language (English, French, German, etc.) by letting you customize the abbreviation-list title.
 
@@ -13,7 +13,7 @@ To use the library locally, download `lib.typ` and place it in your document's d
 ### Import from Typst Universe (not yet available)
 To import the library from Typst Universe, add this to your document:
 ```typst
-#import "@preview/abbreviations:0.1.0": *
+#import "@preview/abbrev:0.1.0": *
 ```
 
 ## Usage
