@@ -11,12 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v4
       
-      - name: Install Typst
-        run: |
-          curl --proto '=https' --tlsv1.2 -LsSf https://github.com/typst/typst/releases/download/v0.11.0/typst-x86_64-unknown-linux-musl.tar.gz | tar xzf -
-          sudo mv typst /usr/local/bin/
+      - uses: typst-community/setup-typst@v5
       
       - name: Compile Typst to PDF
         run: typst compile example.typ
