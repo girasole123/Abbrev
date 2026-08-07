@@ -1,4 +1,5 @@
 #import "./lib.typ": *
+// or: #import "@preview/abbrev:0.1.0": *
 = How to use
 Fist, define all abbreviations:
 ```typst
