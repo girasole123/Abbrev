@@ -86,6 +86,8 @@
   outlined: false,
   empty: [No abbreviations used.],
   leader: repeat([.], gap: 0.08em),
+  inset: (x: 0.25em),
+  row-gutter: 0.65em,
 ) = {
   heading(
     level: level,
@@ -120,9 +122,13 @@
     if by-key.len() == 0 {
       empty
     } else {
-      stack(
-        spacing: 0.65em,
-        .._sorted-used-keys(definitions, by-key).map(key => {
+      grid(
+        columns: (auto, auto),
+        align: (left, left, center, right),
+        stroke: none,
+        inset: inset,
+        row-gutter: row-gutter,
+        ..for key in _sorted-used-keys(definitions, by-key) {
           let item = by-key.at(key)
 
           let pages = _unique(item.pages).map(page => {
@@ -132,15 +138,16 @@
               str(page),
             )
           })
-
-          grid(
-            columns: (auto, 1fr, auto),
-            align: (left, left, right),
-            [#item.short #sym.arrow #item.long],
-            box(width: 100%)[#leader],
-            [#pages.join(", ")],
+          (
+            [#item.short],
+            grid(
+              columns: (auto, 1fr, auto),
+              [#item.long],
+              [#box(width: 100%)[#leader]],
+              [#pages.join(", ")],
+            ),
           )
-        }),
+        },
       )
     }
   }
