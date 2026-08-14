@@ -4,16 +4,16 @@ A **simple Typst package for creating and managing abbreviations**. While more c
 
 ## Installation
 
-### Local use
-To use the library locally, download `lib.typ` and place it in your document's directory (or any location of your choice). Then add this import statement to your document (adjust the path if needed):
-```typst
-#import "./lib.typ": *
-```
-
 ### Import from Typst Universe
 To import the library from Typst Universe, add this to your document:
 ```typst
 #import "@preview/abbrev:0.1.0": *
+```
+
+### Local use
+To use the library locally, download `lib.typ` and place it in your document's directory (or any location of your choice). Then add this import statement to your document (adjust the path if needed):
+```typst
+#import "./lib.typ": *
 ```
 
 ## Usage
@@ -70,7 +70,9 @@ The default title is "List of abbreviations" — customize it as needed. For exa
 
 ## Example
 
-See `example.typ` for a complete working example. To view the compiled output:
+See `example.typ` for a complete working example. To view the compiled output, choose one of the following:
 
-- Compile `example.typ`: `typst compile example.typ`. Make sure you put `lib.typ` in the same directory as `example.typ`.
-- (Or) In GitHub Actions, select a passed workflow run and download the `pdf-output` artifact (ZIP file containing the PDF).
+- Compile with the package: Run `typst compile example.typ` and ensure the import statement is `#import "@preview/abbrev:0.1.0": *`.
+- Compile locally: Run `typst compile example.typ` after placing `lib.typ` in the same directory as `example.typ` and updating the import statement to `#import "./lib.typ": *`.
+- Use GitHub Actions: Select the latest passed workflow run and download the `pdf-output` artifact (a ZIP file containing the PDF).
+
