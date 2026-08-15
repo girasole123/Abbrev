@@ -85,8 +85,7 @@
   numbering: none,
   outlined: false,
   empty: [No abbreviations used.],
-  leader: repeat([.], gap: 0.08em),
-  inset: (x: 0.25em),
+  filler: repeat([.], gap: 0.15em),
   row-gutter: 0.65em,
 ) = {
   heading(
@@ -126,7 +125,6 @@
         columns: (auto, auto),
         align: (left, left, center, right),
         stroke: none,
-        inset: inset,
         row-gutter: row-gutter,
         ..for key in _sorted-used-keys(definitions, by-key) {
           let item = by-key.at(key)
@@ -141,9 +139,11 @@
           (
             [#item.short],
             grid(
-              columns: (auto, 1fr, auto),
+              columns: (auto, auto, 1fr, auto, auto),
               [#item.long],
-              [#box(width: 100%)[#leader]],
+              [~],
+              box(width: 100%)[#filler],
+              [~],
               [#pages.join(", ")],
             ),
           )
