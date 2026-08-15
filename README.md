@@ -11,10 +11,7 @@ To import the library from Typst Universe, add this to your document:
 ```
 
 ### Local use
-To use the library locally, download `lib.typ` and place it in your document's directory (or any location of your choice). Then add this import statement to your document (adjust the path if needed):
-```typst
-#import "./lib.typ": *
-```
+To use the library locally, download `lib.typ` and place it in your document's directory (or any location of your choice). Then import all (`*`) from `lib.typ` to your document.
 
 ## Usage
 
@@ -77,6 +74,6 @@ The default title is "List of abbreviations" — customize it as needed. For exa
 See `example.typ` for a complete working example. To view the compiled output, choose one of the following:
 
 - Compile with the package: Run `typst compile example.typ` and ensure the import statement is `#import "@preview/abbrev:0.1.1": *`.
-- Compile locally: Run `typst compile example.typ` after placing `lib.typ` in the same directory as `example.typ` and updating the import statement to `#import "./lib.typ": *`.
+- Compile locally: Run `typst compile example.typ` after placing `lib.typ` in the same directory as `example.typ` and updating the import statement to import `lib.typ`.
 - Use GitHub Actions: Select the latest passed workflow run and download the `pdf-output` artifact (a ZIP file containing the PDF).
 
