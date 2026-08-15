@@ -11,7 +11,7 @@ To import the library from Typst Universe, add this to your document:
 ```
 
 ### Local use
-To use the library locally, download `lib.typ` and place it in your document's directory (or any location of your choice). Then import all (`*`) from `lib.typ` to your document.
+To use the library locally, download `lib.typ` and place it in your document's directory (or any location of your choice). Then, into your document, import all (i.e. `*`) from `lib.typ`.
 
 ## Usage
 
