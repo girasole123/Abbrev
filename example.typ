@@ -1,4 +1,4 @@
-#import "@preview/abbrev:0.1.1": *
+#import "@preview/abbrev:0.1.2": *
 // or locally: #import "./lib.typ": *
 = How to use
 Fist, define all abbreviations:
