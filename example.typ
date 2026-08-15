@@ -1,5 +1,7 @@
 #import "@preview/abbrev:0.1.2": *
-// or locally: #import "./lib.typ": *
+// or locally:
+// #import "./lib.typ": *
+
 = How to use
 Fist, define all abbreviations:
 ```typst
@@ -9,6 +11,7 @@ Fist, define all abbreviations:
   "CPU": "Central Processing Unit",
 ))
 ```
+
 Then use them:
 - Short form:
   ```typst
@@ -24,12 +27,14 @@ Then use them:
   ```typst
   #abbr("GPU", suffix: "s")
   ```
+
 Display the abbreviation list (default title is "List of abbreviations"):
 ```typst
 #abbreviation-outline(
   title: [Abbreviations],
 )
 ```
+
 = Exemple of use
 #define-abbreviations((
   "GPU": "Graphics Processing Unit",
@@ -40,7 +45,9 @@ Display the abbreviation list (default title is "List of abbreviations"):
 #abbreviation-outline(
   title: [Abbreviations],
 )
+
 = Text
+
 The first #abbr("GPU", form: "full") call can use the full form.
 Later mentions can use #abbr("GPU") only.
 
