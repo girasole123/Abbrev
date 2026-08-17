@@ -69,7 +69,7 @@ The default title is "List of abbreviations" — customize it as needed. For exa
 
 See `example.typ` for a complete working example. To view the compiled output, choose one of the following:
 
-- Compile with the package: Run `typst compile example.typ` and ensure the import statement is `#import "@preview/abbrev:0.1.2": *`.
+- Compile with the package: Run `typst compile example.typ` and ensure the import statement is `#import "@preview/abbrev:0.1.3": *`.
 - Compile locally: Run `typst compile example.typ` after placing `lib.typ` in the same directory as `example.typ` and updating the import statement to import `lib.typ`.
 - Use GitHub Actions: Select the latest passed workflow run and download the `pdf-output` artifact (a ZIP file containing the PDF).
 
