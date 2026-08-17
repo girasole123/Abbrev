@@ -137,7 +137,7 @@
             )
           })
           (
-            [#item.short],
+            [#item.short~],
             grid(
               columns: (auto, auto, 1fr, auto, auto),
               [#item.long],
