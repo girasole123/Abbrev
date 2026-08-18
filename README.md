@@ -7,7 +7,7 @@ A **simple Typst package for creating and managing abbreviations**. While more c
 ### Import from Typst Universe
 To import the library from Typst Universe, add this to your document:
 ```typst
-#import "@preview/abbrev:0.1.3": *
+#import "@preview/abbrev:0.1.4": *
 ```
 
 ### Local use
@@ -66,11 +66,38 @@ Output:
 
 The default title is "List of abbreviations" — customize it as needed. For example, in French: `title: [Liste des abréviations]`.
 
+### Customizing the abbreviation outline
+When no abbreviations are used in the document, the outline displays `[No abbreviations used.]` by default. You can customize this message with the `empty` parameter (which accept a content).
+
+```typst
+#abbreviation-outline(
+  title: [Abbreviations],
+  empty: [Nothing to show.],
+)
+```
+
+<img width="153" height="62" alt="Example without abbreviations" src="https://github.com/user-attachments/assets/f1c9038f-8e88-4e57-b9b0-6ca9270f5244" />
+
+You can also customize how your abbreviation definitions are displayed using two parameters:
+- `separator`: Controls the spacing between the short and long form of the abbreviation. The default is `[~~]` (two non-breaking space generally produces better results). For example, in French, you might use `[~:~~]` to include a colon with a non-breaking space before it.
+- `filler`:  Controls the filler characters displayed between the abbreviation and page number. The default is `repeat([.], gap: 0.15em)`, which creates dots with `0.15em` spacing between them.
+```typst
+#define-abbreviations((
+  "ABBA": "Was a Swedish pop music group formed by Agnetha, Björn, Benny Anni-Frid",
+))
+#abbreviation-outline(
+  title: [Abbreviations],
+  separator: [:~~],
+  filler: repeat([-], gap: 0.25pt),
+)
+```
+<img width="612" height="110" alt="Example with a different separator and filler" src="https://github.com/user-attachments/assets/a41a22b3-a95e-4f63-a6db-42904c6ea88c" />
+
 ## Example
 
 See `example.typ` for a complete working example. To view the compiled output, choose one of the following:
 
-- Compile with the package: Run `typst compile example.typ` and ensure the import statement is `#import "@preview/abbrev:0.1.3": *`.
+- Compile with the package: Run `typst compile example.typ` and ensure the import statement is `#import "@preview/abbrev:0.1.4": *`.
 - Compile locally: Run `typst compile example.typ` after placing `lib.typ` in the same directory as `example.typ` and updating the import statement to import `lib.typ`.
 - Use GitHub Actions: Select the latest passed workflow run and download the `pdf-output` artifact (a ZIP file containing the PDF).
 
