@@ -87,6 +87,7 @@
   empty: [No abbreviations used.],
   filler: repeat([.], gap: 0.15em),
   row-gutter: 0.65em,
+  separator: [~~],
 ) = {
   heading(
     level: level,
@@ -137,7 +138,7 @@
             )
           })
           (
-            [#item.short~],
+            [#item.short] + [#separator],
             grid(
               columns: (auto, auto, 1fr, auto, auto),
               [#item.long],
