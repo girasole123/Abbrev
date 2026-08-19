@@ -75,6 +75,7 @@ When no abbreviations are used in the document, the outline displays `[No abbrev
   empty: [Nothing to show.],
 )
 ```
+Output:
 
 <img width="153" height="62" alt="Example without abbreviations" src="https://github.com/user-attachments/assets/f1c9038f-8e88-4e57-b9b0-6ca9270f5244" />
 
@@ -88,10 +89,23 @@ You can also customize how your abbreviation definitions are displayed using two
 #abbreviation-outline(
   title: [Abbreviations],
   separator: [:~~],
-  filler: repeat([-], gap: 0.25pt),
+  filler: repeat([^], gap: 5pt),
 )
+= Title
+I like #abbr("ABBA"). Do you?
 ```
-<img width="612" height="110" alt="Example with a different separator and filler" src="https://github.com/user-attachments/assets/a41a22b3-a95e-4f63-a6db-42904c6ea88c" />
+Output:
+
+<img width="612" height="112" alt="Example with a different separator and filler" src="https://github.com/user-attachments/assets/16c075de-096a-4429-b60a-529d321237a6" />
+
+
+The `#abbreviation-outline()` function creates an abbreviation list with a level-1 heading by default that is not numbered and does not appear in the chapter outline. Customize this behavior with the following parameters:
+
+Parameter  | Default |	Purpose
+-----------|:-------:|---------
+`level`    |   `1`   | Sets the heading level
+`numbering`| `none`  | Controls whether the title is numbered
+`outlined` | `false` | Controls whether the title appears in the chapter outline
 
 ## Example
 
