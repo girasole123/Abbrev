@@ -101,7 +101,17 @@
 
     for item in query(<abbr-use>) {
       let value = item.value
-      let page = counter(page).at(item.location()).first()
+
+      // What the user sees printed on the page: the value of the `page`
+      // counter at the abbreviation's location. The counter can be reset
+      // (e.g. `counter(page).update(1)`) so the printed numbering skips
+      // unnumbered title/cover pages.
+      let displayed = counter(page).at(item.location()).first()
+
+      // What the link must target: the true physical page (1-based) of
+      // the abbreviation's location. `link((page: ..., ...))` always
+      // expects a physical page number, *not* the value of the counter.
+      let physical = item.location().page()
 
       let previous = by-key.at(value.key, default: (
         short: value.short,
@@ -110,7 +120,7 @@
       ))
 
       let pages = previous.pages
-      pages.push(page)
+      pages.push((displayed: displayed, physical: physical))
 
       by-key.insert(value.key, (
         short: value.short,
@@ -130,11 +140,12 @@
         ..for key in _sorted-used-keys(definitions, by-key) {
           let item = by-key.at(key)
 
-          let pages = _unique(item.pages).map(page => {
-            // lien vers le coin haut-gauche de la page (page numérotée à partir de 1)
+          let pages = _unique(item.pages).map(entry => {
+            // Use the physical page for the link target, but show the
+            // counter value (the number printed on the page).
             link(
-              (page: page, x: 0pt, y: 0pt),
-              str(page),
+              (page: entry.physical, x: 0pt, y: 0pt),
+              str(entry.displayed),
             )
           })
           (
