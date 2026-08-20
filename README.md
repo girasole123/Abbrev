@@ -109,9 +109,9 @@ Parameter  | Default |	Purpose
 
 ## Example
 
-See `example.typ` for a complete working example. To view the compiled output, choose one of the following:
+See `example.typ` in the [Abbrev GitHub repository](https://github.com/girasole123/Abbrev) for a complete, working example. To view the compiled output, choose one of the following:
 
-- Compile with the package: Run `typst compile example.typ` and ensure the import statement is `#import "@preview/abbrev:0.1.4": *`.
+- Compile with the package: Run `typst compile example.typ` and ensure the import statement is `#import "@preview/abbrev:0.1.5": *`.
 - Compile locally: Run `typst compile example.typ` after placing `lib.typ` in the same directory as `example.typ` and updating the import statement to import `lib.typ`.
 - Use GitHub Actions: Select the latest passed workflow run and download the `pdf-output` artifact (a ZIP file containing the PDF).
 
