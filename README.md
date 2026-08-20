@@ -7,7 +7,7 @@ A **simple Typst package for creating and managing abbreviations**. While more c
 ### Import from Typst Universe
 To import the library from Typst Universe, add this to your document:
 ```typst
-#import "@preview/abbrev:0.1.4": *
+#import "@preview/abbrev:0.1.5": *
 ```
 
 ### Local use
