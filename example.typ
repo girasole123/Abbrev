@@ -1,4 +1,4 @@
-//#import "@preview/abbrev:0.1.4": *
+//#import "@preview/abbrev:0.1.5": *
 // or locally:
 #import "./lib.typ": *
 
