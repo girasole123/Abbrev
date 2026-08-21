@@ -53,7 +53,7 @@ Later mentions can use #abbr("GPU") only.
 
 You can also print another form, such as #abbr("XML", form: "long"), or add a suffix like #abbr("CPU", suffix: "s").
 
-In French #abbr("GPU") is called _#abbr("GPU", form: "long", alt-long: "Unité de traitement graphique")_.
+In French, #abbr("GPU") is called _#abbr("GPU", form: "long", alt-long: "Unité de traitement graphique")_.
 
 This is page #context [#counter(page).display()].
 
