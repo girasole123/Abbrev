@@ -23,9 +23,16 @@
   }
 }
 
-#let _abbr-render(entry, form: "short", suffix: "") = {
+#let _abbr-render(
+  entry,
+  form: "short",
+  suffix: none,
+  alt-long: none,
+) = {
   let short = str(entry.short) + suffix
-  let long = str(entry.long) + suffix
+  let long = if alt-long == none {
+    str(entry.long) + suffix
+  } else { alt-long + suffix }
 
   if form == "short" {
     short
@@ -38,7 +45,12 @@
   }
 }
 
-#let abbr(key, form: "short", suffix: "") = context {
+#let abbr(
+  key,
+  form: "short",
+  suffix: none,
+  alt-long: none,
+) = context {
   let definitions = _abbr-definitions.get()
   let entry = _abbr-entry(definitions, key)
 
@@ -46,7 +58,12 @@
       key: key,
       short: entry.short,
       long: entry.long,
-    ))<abbr-use>#_abbr-render(entry, form: form, suffix: suffix)]
+    ))<abbr-use>#_abbr-render(
+      entry,
+      form: form,
+      suffix: suffix,
+      alt-long: alt-long,
+    )]
 }
 
 #let _unique(values) = {
@@ -85,10 +102,30 @@
   numbering: none,
   outlined: false,
   empty: [No abbreviations used.],
-  filler: repeat([.], gap: 0.15em),
-  row-gutter: 0.65em,
-  separator: [~~],
+  fill: repeat([.], gap: 0.15em),
+  gutter: auto,
+  row-gutter: auto,
+  column-gutter: auto,
+  separator: none,
 ) = {
+  let default-gutter = if gutter == auto {
+    0.65em
+  } else {
+    gutter
+  }
+
+  let column-gutter = if column-gutter == auto {
+    default-gutter
+  } else {
+    column-gutter
+  }
+
+  let row-gutter = if row-gutter == auto {
+    default-gutter
+  } else {
+    row-gutter
+  }
+
   heading(
     level: level,
     numbering: numbering,
@@ -102,16 +139,11 @@
     for item in query(<abbr-use>) {
       let value = item.value
 
-      // What the user sees printed on the page: the value of the `page`
-      // counter at the abbreviation's location. The counter can be reset
-      // (e.g. `counter(page).update(1)`) so the printed numbering skips
-      // unnumbered title/cover pages.
-      let displayed = counter(page).at(item.location()).first()
+      let displayed-page = counter(page)
+        .at(item.location())
+        .first()
 
-      // What the link must target: the true physical page (1-based) of
-      // the abbreviation's location. `link((page: ..., ...))` always
-      // expects a physical page number, *not* the value of the counter.
-      let physical = item.location().page()
+      let physical-page = item.location().page()
 
       let previous = by-key.at(value.key, default: (
         short: value.short,
@@ -120,7 +152,10 @@
       ))
 
       let pages = previous.pages
-      pages.push((displayed: displayed, physical: physical))
+      pages.push((
+        displayed-page: displayed-page,
+        physical-page: physical-page,
+      ))
 
       by-key.insert(value.key, (
         short: value.short,
@@ -136,26 +171,25 @@
         columns: (auto, auto),
         align: (left, left, center, right),
         stroke: none,
+        gutter: gutter,
         row-gutter: row-gutter,
+        column-gutter: column-gutter,
         ..for key in _sorted-used-keys(definitions, by-key) {
           let item = by-key.at(key)
 
           let pages = _unique(item.pages).map(entry => {
-            // Use the physical page for the link target, but show the
-            // counter value (the number printed on the page).
             link(
-              (page: entry.physical, x: 0pt, y: 0pt),
-              str(entry.displayed),
+              (page: entry.physical-page, x: 0pt, y: 0pt),
+              str(entry.displayed-page),
             )
           })
           (
             [#item.short] + [#separator],
             grid(
-              columns: (auto, auto, 1fr, auto, auto),
+              column-gutter: 0.25em,
+              columns: (auto, 1fr, auto),
               [#item.long],
-              [~],
-              box(width: 100%)[#filler],
-              [~],
+              box(width: 100%)[#fill],
               [#pages.join(", ")],
             ),
           )
