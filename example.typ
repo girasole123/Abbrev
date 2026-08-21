@@ -1,4 +1,4 @@
-//#import "@preview/abbrev:0.1.5": *
+//#import "@preview/abbrev:0.1.6": *
 // or locally:
 #import "./lib.typ": *
 
@@ -28,7 +28,7 @@ Then use them:
   #abbr("GPU", suffix: "s")
   ```
 
-Display the abbreviation list (default title is "List of abbreviations"):
+Display the abbreviation list anywhere in the document (default title is "List of abbreviations"):
 ```typst
 #abbreviation-outline(
   title: [Abbreviations],
@@ -52,6 +52,8 @@ The first #abbr("GPU", form: "full") call can use the full form.
 Later mentions can use #abbr("GPU") only.
 
 You can also print another form, such as #abbr("XML", form: "long"), or add a suffix like #abbr("CPU", suffix: "s").
+
+In French #abbr("GPU") is called _#abbr("GPU", form: "long", alt-long: "Unité de traitement graphique")_.
 
 This is page #context [#counter(page).display()].
 
