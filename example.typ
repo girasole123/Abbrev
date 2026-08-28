@@ -1,8 +1,8 @@
-//#import "@preview/abbrev:0.1.6": *
+//#import "@preview/abbrev:0.1.7": *
 // or locally:
 #import "./lib.typ": *
 
-= Exemple of use
+= Example of use
 #define-abbreviations((
   "GPU": "Graphics Processing Unit",
   "XML": "Extensible Markup Language",
