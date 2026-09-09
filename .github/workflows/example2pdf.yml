@@ -16,10 +16,14 @@ jobs:
       - uses: typst-community/setup-typst@v5
       
       - name: Compile Typst to PDF
-        run: typst compile example.typ
+        run: |
+          typst compile example.typ
+          typst compile example2.typ
       
       - name: Upload PDF as artifact
         uses: actions/upload-artifact@v6
         with:
           name: pdf-output
-          path: example.pdf
+          path: |
+            example.pdf
+            exemple2.pdf
