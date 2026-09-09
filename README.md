@@ -423,13 +423,13 @@ The outline supports the following parameters:
 | `title` | Category `name` (or `category` capitalised, e.g. `[Abbreviations]`) | Heading displayed above the outline. |
 | `category` | `"abbrev"` | Category whose entries are listed. |
 | `level` | `1` | Heading level. |
-| `numbering` | `none` | Heading numbering format. |
+| `numbering` | `none` | Heading numbering format (e.g. `"1."`). |
 | `outlined` | `false` | Whether the heading appears in the document outline. |
 | `empty` | `[No abbreviations used.]` (replace `abbreviations` with other categories) | Message shown when the outline is empty. |
 | `fill` | `repeat([.], gap: 0.15em)` | Filler between the long form and page number. |
-| `gutter` | `auto` | Default spacing between rows and columns. |
-| `row-gutter` | `auto` | Spacing between rows. |
-| `column-gutter` | `auto` | Spacing between columns. |
+| `gutter` | `auto` | Default spacing between rows and columns (if set to `auto`, defaults to `0.65em`). Overrides any individually specified values.|
+| `row-gutter` | `auto` | Spacing between rows (if set to `auto`, defaults to `0.65em`). |
+| `column-gutter` | `auto` | Spacing between columns (if set to `auto`, defaults to `0.65em`). |
 | `separator` | `none` | Content inserted after the short form. |
 
 ### Custom headings
