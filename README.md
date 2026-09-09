@@ -426,7 +426,7 @@ The outline supports the following parameters:
 | `numbering` | `none` | Heading numbering format (e.g. `"1."`). |
 | `outlined` | `false` | Whether the heading appears in the document outline. |
 | `empty` | `[No abbreviations used.]` (replace `abbreviations` with other categories) | Message shown when the outline is empty. |
-| `fill` | `repeat([.], gap: 0.15em)` | Filler between the long form and page number. |
+| `fill` | `repeat([.], gap: 0.15em)` | Filler between the long form and page numbers. |
 | `gutter` | `auto` | Default spacing between rows and columns (if set to `auto`, defaults to `0.65em`). Overrides any individually specified values.|
 | `row-gutter` | `auto` | Spacing between rows (if set to `auto`, defaults to `0.65em`). |
 | `column-gutter` | `auto` | Spacing between columns (if set to `auto`, defaults to `0.65em`). |
