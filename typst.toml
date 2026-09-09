@@ -1,11 +1,11 @@
 [package]
 name = "abbrev"
-version = "0.1.7"
+version = "0.2.0"
 entrypoint = "lib.typ"
 authors = ["Luca P. <@girasole123>"]
 license = "GPL-3.0-or-later"
-description = "Create and manage abbreviations in your documents."
+description = "A lightweight, language-independent Typst package for defining, using, and listing abbreviations, acronyms, initialisms, glossary terms, symbols, and custom term lists."
 repository = "https://github.com/girasole123/Abbrev"
-keywords = ["abbreviations", "acronyms", "glossary", "list"]
+keywords = ["abbreviations", "acronyms", "glossary", "symbols", "initialisms", "custom", "list", "outline"]
 categories = ["text", "model"]
-exclude = ["example.typ"]
+exclude = ["example.typ", "exemple2.typ"]

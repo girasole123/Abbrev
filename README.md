@@ -1,148 +1,650 @@
 # Abbrev
 
-A **simple Typst package for creating and managing abbreviations**. While more complex packages exist, this one prioritizes ease of use and adapts to any language (English, French, German, etc.) by allowing you to customize elements such as the abbreviation-list heading.
+**Abbrev** is a lightweight and language-independent Typst package for defining, using, and organizing abbreviations, glossary terms, symbols, acronyms, and initialisms.
+
+It provides a simple interface for common use cases while also supporting more advanced workflows:
+
+- abbreviations and initialisms;
+- acronyms;
+- glossary terms;
+- chemical, mathematical, and currency symbols;
+- custom categories;
+- styled short and long forms;
+- separate catalogues and outlines for each category;
+- customizable headings, separators, fillers, and spacing.
+
+Abbrev does not impose a specific language or terminology system. You can customize headings and definitions to suit English, French, German, and many other languages.
 
 ## Installation
 
 ### Import from Typst Universe
-To import the library from Typst Universe, add this to your document:
+
+Add the following import to your Typst document:
+
 ```typst
-#import "@preview/abbrev:0.1.7": *
+#import "@preview/abbrev:0.2.0": *
 ```
 
 ### Local use
-To use the library locally, download `lib.typ` and place it in your document's directory (or any location of your choice). Then, into your document, import all (i.e. `*`) from `lib.typ`.
 
-## Usage
+Download `lib.typ` and place it in your document's directory, or in another directory of your choice.
 
-### Step 1: Define abbreviations
+Then import it locally:
 
-Start by defining all your abbreviations in a dictionary with the `#define-abbreviations()` function. You can call this function multiple times to add new abbreviations, passing a dictionary each time. Each abbreviation must be defined earlier in the document's source code than the point where it is used. Here is an example with two calls:
+```typst
+#import "./lib.typ": *
+```
+
+## Defining entries
+
+Version 0.2.0 provides specialized definition functions for different types of entries:
+
+| Function | Default category | Intended use |
+|----------|------------------|--------------|
+| `abbrev-def` | `"abbrev"` | Abbreviations and initialisms |
+| `term-def` | `"term"` | Glossary terms |
+| `symbol-def` | `"symbol"` | Chemical, mathematical, or currency symbols |
+| `acronym-def` | `"acronym"` | Acronyms and initialisms |
+
+Each function accepts a key and either a string or a dictionary containing `short` and `long` forms.
+
+### Abbreviations
+
+Define a single abbreviation:
+
+```typst
+#abbrev-def("GPU", "Graphics Processing Unit")
+```
+
+You can also define several abbreviations at once:
+
+```typst
+#abbrev-def((
+  "CPU": "Central Processing Unit",
+  "XML": "Extensible Markup Language",
+))
+```
+
+For more control, provide separate short and long forms. The `to-nnbsp` function replaces ordinary spaces with narrow non-breaking spaces. This is useful for abbreviations whose parts should remain together and should not be separated by a line break.
+
+For example:
+
+```typst
+#abbrev-def(
+  "i.e.",
+  (
+    short: to-nnbsp("i. e."),
+    long: "id est",
+  ),
+)
+
+
+```typst
+#abbrev-def(
+  "i.e.",
+  (
+    short: to-nnbsp("i. e."),
+    long: "id est",
+  ),
+)
+
+#abbrev-def(
+  "etc.",
+  (
+    short: "etc.",
+    long: "et cætera",
+  ),
+)
+```
+
+The `short` and `long` values can contain either plain strings or styled Typst content.
+
+### Glossary terms
+
+Use `term-def` for glossary entries:
+
+```typst
+#term-def(
+  "API",
+  "Application Programming Interface",
+)
+```
+
+Definitions can contain styled content:
+
+```typst
+#term-def(
+  "Typst",
+  (
+    short: [
+      #text(
+        "Typst",
+        size: 1.05em,
+        weight: "bold",
+        fill: rgb("#239dad"),
+      )
+    ],
+    long: [A *language* for _typesetting_ documents],
+  ),
+)
+```
+
+### Symbols
+
+Use `symbol-def` for chemical, mathematical, or other symbols:
+
+```typst
+#symbol-def(
+  "H2O",
+  (
+    short: [H#sub("2")O],
+    long: [water],
+  ),
+)
+
+#symbol-def("NaCl", "sodium chloride")
+#symbol-def("$", "Canadian dollar")
+#symbol-def("€", "Euro")
+```
+
+### Acronyms and initialisms
+
+Use `acronym-def` for acronyms and initialisms:
+
+```typst
+#acronym-def(
+  "NASA",
+  "National Aeronautics and Space Administration",
+)
+
+#acronym-def(
+  "laser",
+  "light amplification by stimulated emission of radiation",
+)
+```
+
+## Using entries
+
+### Abbreviations
+
+Use `abbrev` for entries in the default `"abbrev"` category:
+
+```typst
+#abbrev("GPU")
+```
+
+Output:
+
+> GPU
+
+To display the long form:
+
+```typst
+#abbrev("GPU", form: "long")
+```
+
+Output:
+
+> Graphics Processing Unit
+
+To display both forms:
+
+```typst
+#abbrev("GPU", form: "full")
+```
+
+Output:
+
+> Graphics Processing Unit (GPU)
+
+The available forms are:
+
+- `short` — the short form only;
+- `long` — the long form only;
+- `full` — the long form followed by the short form in parentheses.
+
+### Suffixes
+
+Use `suffix` to add a suffix to both forms. This is useful for plural or grammatical forms:
+
+```typst
+#abbrev("CPU", suffix: "s")
+```
+
+Output:
+
+> CPUs
+
+The suffix is also applied to the long form:
+
+```typst
+#abbrev("CPU", form: "full", suffix: "s")
+```
+
+Output:
+
+> Central Processing Units (CPUs)
+
+### Alternative long forms
+
+Use `alt-long` to replace the long form for a particular occurrence:
+
+```typst
+#abbrev(
+  "GPU",
+  form: "long",
+  alt-long: [Processeur graphique],
+)
+```
+
+This is useful when translating a term or using a different grammatical form:
+
+```typst
+#abbrev("GPU", form: "full")
+```
+
+Output:
+
+> Graphics Processing Unit (GPU)
+
+```typst
+#abbrev(
+  "GPU",
+  form: "long",
+  alt-long: [Processeur graphique],
+)
+```
+
+Output:
+
+> Processeur graphique
+
+The alternative long form only affects that particular use. It does not modify the original definition.
+
+### Glossary terms
+
+Use `term-entry` to reference entries in the `term` category:
+
+```typst
+#term-entry("API")
+#term-entry("API", form: "long")
+#term-entry("API", form: "full")
+```
+
+Styled definitions are preserved:
+
+```typst
+#term-entry("Typst", form: "full")
+```
+
+### Symbols
+
+Use `symbol-entry` to reference entries in the `symbol` category:
+
+```typst
+#symbol-entry("H2O")
+#symbol-entry("H2O", form: "long")
+#symbol-entry("H2O", form: "full")
+```
+
+Other examples:
+
+```typst
+#symbol-entry("NaCl", form: "full")
+#symbol-entry("$", form: "full")
+#symbol-entry("€", form: "full")
+```
+
+### Acronyms and initialisms
+
+Use `acronym-entry` to reference entries in the `acronym` category:
+
+```typst
+#acronym-entry("NASA")
+#acronym-entry("NASA", form: "long")
+#acronym-entry("laser", form: "full")
+```
+
+## Custom categories
+
+You can create your own categories with `add-category`.
+
+For example, define a category for units:
+
+```typst
+#add-category("unit", title: "Units")
+```
+
+Then define entries in that category:
+
+```typst
+#abbrev-def(
+  "km",
+  "kilometre",
+  category: "unit",
+)
+
+#abbrev-def(
+  "kg",
+  "kilogram",
+  category: "unit",
+)
+```
+
+Use the regular `abbrev` function with the `category` parameter:
+
+```typst
+#abbrev("km", category: "unit")
+#abbrev("kg", form: "long", category: "unit")
+#abbrev("km", form: "full", category: "unit")
+```
+
+Or make your own function:
+```typst
+#let unit(
+  key,
+  form: "short",
+  suffix: none,
+  alt-long: none,
+) = abbrev(
+  key,
+  category: "unit",
+  form: form,
+  suffix: suffix,
+  alt-long: alt-long,
+)
+#unit("kg")
+```
+
+Custom categories can be used for units, mathematical notation, technical terminology, or any other group of entries.
+
+## Category outlines
+
+Use `abbrev-outline` to generate an outline for a category.
+
+### Abbreviation outline
+
+```typst
+#abbrev-outline(
+  title: [Abbreviations and initialisms],
+  category: "abbrev",
+  level: 3,
+)
+```
+
+### Glossary outline
+
+```typst
+#abbrev-outline(
+  title: [Glossary],
+  category: "term",
+  level: 3,
+)
+```
+
+### Symbol outline
+
+```typst
+#abbrev-outline(
+  title: [Symbols],
+  category: "symbol",
+  level: 3,
+)
+```
+
+### Acronym outline
+
+```typst
+#abbrev-outline(
+  title: [Acronyms and initialisms],
+  category: "acronym",
+  level: 3,
+)
+```
+
+### Custom-category outline
+
+```typst
+#abbrev-outline(
+  title: [Units],
+  category: "unit",
+  level: 3,
+)
+```
+
+Only entries that are used in the document are included in an outline. The page numbers link back to the corresponding occurrences.
+
+## Customizing outlines
+
+The outline supports the following parameters:
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `title` | Category `name` (or `category` capitalised, e.g. `[Abbreviations]`) | Heading displayed above the outline. |
+| `category` | `"abbrev"` | Category whose entries are listed. |
+| `level` | `1` | Heading level. |
+| `numbering` | `none` | Heading numbering format (e.g. `"1."`). |
+| `outlined` | `false` | Whether the heading appears in the document outline. |
+| `empty` | `[No abbreviations used.]` (replace `abbreviations` with other categories) | Message shown when the outline is empty. |
+| `fill` | `repeat([.], gap: 0.15em)` | Filler between the long form and page numbers. |
+| `gutter` | `auto` | Default spacing between rows and columns (if set to `auto`, defaults to `0.65em`). Overrides any individually specified values.|
+| `row-gutter` | `auto` | Spacing between rows (if set to `auto`, defaults to `0.65em`). |
+| `column-gutter` | `auto` | Spacing between columns (if set to `auto`, defaults to `0.65em`). |
+| `separator` | `none` | Content inserted after the short form. |
+
+### Custom headings
+
+```typst
+#abbrev-outline(
+  title: [Liste des abréviations],
+  category: "abbrev",
+)
+```
+
+### Empty outlines
+
+```typst
+#abbrev-outline(
+  title: [Glossary],
+  category: "term",
+  empty: [No glossary terms were used.],
+)
+```
+
+### Separators
+
+Use `separator` to insert content after the short form:
+
+```typst
+#abbrev-outline(
+  title: [Abbreviations],
+  separator: [:],
+)
+```
+
+For French typography, you may want a non-breaking space before the colon:
+
+```typst
+#abbrev-outline(
+  title: [Liste des abréviations],
+  separator: [~:],
+)
+```
+
+### Fillers and spacing
+
+The default filler is a series of spaced dots:
+
+```typst
+repeat([.], gap: 0.15em)
+```
+
+You can replace it with a line:
+
+```typst
+#abbrev-outline(
+  fill: line(
+    length: 100%,
+    start: (0%, 0.65em),
+  ),
+)
+```
+
+Set the spacing between rows and columns with `gutter`:
+
+```typst
+#abbrev-outline(
+  gutter: 1em,
+)
+```
+
+Or set each value independently:
+
+```typst
+#abbrev-outline(
+  row-gutter: 0.5em,
+  column-gutter: 1em,
+)
+```
+
+When `gutter`, `row-gutter`, and `column-gutter` are set to `auto`, the spacing defaults to `0.65em`.
+
+## Complete example
+
+```typst
+#import "@preview/abbrev:0.2.0": *
+
+// Default abbreviation category
+#abbrev-def("GPU", "Graphics Processing Unit")
+#abbrev-def((
+  "CPU": "Central Processing Unit",
+  "XML": "Extensible Markup Language",
+))
+
+// Glossary
+#term-def("API", "Application Programming Interface")
+
+// Symbols
+#symbol-def(
+  "H2O",
+  (
+    short: [H#sub("2")O],
+    long: [water],
+  ),
+)
+
+// Acronyms
+#acronym-def(
+  "NASA",
+  "National Aeronautics and Space Administration",
+)
+
+// Custom category
+#add-category("unit", title: "Units")
+#abbrev-def("km", "kilometre", category: "unit")
+
+// Category outlines
+#abbrev-outline(
+  title: [Abbreviations],
+  category: "abbrev",
+)
+
+#abbrev-outline(
+  title: [Glossary],
+  category: "term",
+)
+
+#abbrev-outline(
+  title: [Symbols],
+  category: "symbol",
+)
+
+#abbrev-outline(
+  title: [Acronyms],
+  category: "acronym",
+)
+
+#abbrev-outline(
+  title: [Units],
+  category: "unit",
+)
+
+// Usage
+= Introduction
+
+The #abbr("GPU", form: "full") is commonly used in
+computer graphics.
+
+A #term-entry("API", form: "long") provides an interface
+for communicating with software.
+
+Water is represented by #symbol-entry("H2O", form: "full").
+
+The organization #acronym-entry("NASA", form: "full")
+conducts research in space science.
+
+The distance is #abbrev("km", form: "full", category: "unit").
+```
+
+## Backward compatibility
+
+The older v0.1.x API remains available:
 
 ```typst
 #define-abbreviations((
   "GPU": "Graphics Processing Unit",
   "XML": "Extensible Markup Language",
 ))
-#define-abbreviations(("CPU": "Central Processing Unit"))
-```
 
-### Step 2: Use abbreviations in your document
-- **Short form** (shows the abbreviation):
-  ```typst
-  #abbr("GPU")
-  ```
-  Output:
-
-  > GPU
-
-- **Long form** (show the definition):
-  ```typst
-  #abbr("GPU", form: "long")
-  ```
-  Output:
-  > Graphics Processing Unit
-
-- **Full form** (shows the complete text, long and short forms):
-  ```typst
-  #abbr("GPU", form: "full")
-  ```
-  Output:
-
-  > Graphics Processing Unit (GPU)
-
-- **With a suffix** (e.g., plural):
-  ```typst
-  #abbr("GPU", suffix: "s")
-  ```
-  Output:
-
-  > GPUs
-  ```typst
-  #abbr("GPU", form: "full", suffix: "s")
-  ```
-  Output:
-
-  > Graphics Processing Units (GPUs)
-
-- Alternatively, you can specify a **different long form** with the parameter `alt-long`, for example, when translating into another language or using a different plural form:
-  ```typst
-  #abbr("GPU", form: "full", alt-long: "Unité de traitement graphique")
-  ```
-  Output:
-
-  > Unité de traitement graphique (GPU)
-
-### Step 3: Display the abbreviation list
-Generate an abbreviation list anywhere in your document, even before defining the abbreviations or using them:
-```typst
 #abbreviation-outline(
   title: [Abbreviations],
 )
+
+#abbr("GPU", form: "full")
 ```
-Output:
 
-<img width="523" height="86" alt="Example list of abbreviations" src="https://github.com/user-attachments/assets/7f84015f-83c9-40ae-86cf-af7c6bb9132f" />
+This makes it possible to update the package without immediately rewriting existing documents. New documents can use the category-based v0.2.0 API.
 
-### Customizing the abbreviation outline
-The default **heading** is `[List of abbreviations]`. Customize it as needed. For example, in French you might use:
+## Local compilation
+
+To compile an example using the Typst Universe package:
+
+```bash
+typst compile example.typ
+```
+
+Make sure the import is:
+
 ```typst
-#abbreviation-outline(title: [Liste des abréviations])
+#import "@preview/abbrev:0.2.0": *
 ```
 
-When **no abbreviations** are used in the document, the outline displays `[No abbreviations used.]` by default. You can customize this message with the parameter `empty`:
+To compile a local copy, place `lib.typ` in the same directory as the example and use:
 
 ```typst
-#abbreviation-outline(
-  title: [Abbreviations],
-  empty: [Nothing to show.],
-)
+#import "./lib.typ": *
 ```
-Output:
 
-<img width="153" height="62" alt="Example without abbreviations" src="https://github.com/user-attachments/assets/f1c9038f-8e88-4e57-b9b0-6ca9270f5244" />
+Then run:
 
-#### Customizing items in the abbreviation outline
-
-You can also customize how your abbreviation definitions are displayed using these parameters:
-- `separator`: Add a content separator immediately after the abbreviation's short form. The default is `none` . For example, in French, you might use `[~:]` to include a colon with a non-breaking space before it.
-- `fill`:  Controls the filler characters displayed between the abbreviation definition and page number. The default is `repeat([.], gap: 0.15em)`, which creates dots with `0.15em` spacing between them.
-- `row-gutter`, `column-gutter`: The gaps between rows and columns; `gutter` is a shorthand for setting both to the same value, but does not take precedence over either property. They all default to `auto`, which resolves to `0.65em`.
-
-Here is an example using the parameters listed below:
-```typst
-#abbreviation-outline(
-  title: [Abbreviations],
-  separator: [:],
-  fill: line(length: 100%, start: (0%, 0.65em)),
-  gutter: 1em,
-)
-#define-abbreviations((
-  "ABBA": "a Swedish pop music group formed by Agnetha, Björn, Benny Anni-Frid",
-))
-= Some title
-I like #abbr("ABBA"). Do you?
+```bash
+typst compile example.typ
 ```
-Output:
 
-<img width="609" height="115" alt="Example with a different separator and filler" src="https://github.com/user-attachments/assets/fd149cbd-f048-43b7-9c2e-3e41c5a55855" />
+## Examples and compiled PDFs
 
+The repository contains example documents demonstrating both the backward-compatible API and the new v0.2.0 functionality.
 
-#### Customizing the heading
+To view the compiled PDFs without installing Typst:
 
-The `#abbreviation-outline()` function creates an abbreviation list with a level-1 heading by default that is not numbered and does not appear in the chapter outline. Customize this behavior with the following parameters:
+1. Open the [Actions page](https://github.com/girasole123/Abbrev/actions).
+2. Select a successful compilation workflow run.
+3. Scroll down to the **Artifacts** section.
+4. Download the `pdf-output` artifact.
+5. Extract the downloaded ZIP file to access the PDFs generated from the examples.
 
-Parameter  | Default |	Purpose
------------|:-------:|---------
-`level`    |   `1`   | Sets the heading level
-`numbering`| `none`  | Controls whether the heading is numbered. Expects a format string, such as `"1."`
-`outlined` | `false` | Controls whether the heading appears in the chapter outline
+The artifact is a ZIP archive containing the PDFs produced by the GitHub Actions compilation workflow.
 
-## Example
+## License
 
-See `example.typ` in the [Abbrev GitHub repository](https://github.com/girasole123/Abbrev) for a complete, working example. To view the compiled output, choose one of the following:
-
-- Compile with the package: Run `typst compile example.typ` and ensure the import statement is `#import "@preview/abbrev:0.1.7": *`.
-- Compile locally: Run `typst compile example.typ` after placing `lib.typ` in the same directory as `example.typ` and updating the import statement to import `lib.typ`.
-- Use GitHub Actions: Select the latest passed workflow run and download the `pdf-output` artifact (a ZIP file containing the PDF).
-
+Abbrev is distributed under the GPL-3.0-or-later license.
