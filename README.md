@@ -78,16 +78,6 @@ For example:
   ),
 )
 
-
-```typst
-#abbrev-def(
-  "i.e.",
-  (
-    short: to-nnbsp("i. e."),
-    long: "id est",
-  ),
-)
-
 #abbrev-def(
   "etc.",
   (
