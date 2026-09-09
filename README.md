@@ -167,7 +167,7 @@ Use `acronym-def` for acronyms and initialisms:
 
 ### Abbreviations
 
-Use `abbrev` for entries in the default `abbrev` category:
+Use `abbrev` for entries in the default `"abbrev"` category:
 
 ```typst
 #abbrev("GPU")
@@ -420,12 +420,12 @@ The outline supports the following parameters:
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|
-| `title` | `[Abbreviations]` | Heading displayed above the outline. |
+| `title` | Category `name` (or `category` capitalised, e.g. `[Abbreviations]`) | Heading displayed above the outline. |
 | `category` | `"abbrev"` | Category whose entries are listed. |
 | `level` | `1` | Heading level. |
 | `numbering` | `none` | Heading numbering format. |
 | `outlined` | `false` | Whether the heading appears in the document outline. |
-| `empty` | `[No abbreviations used.]` | Message shown when the outline is empty. |
+| `empty` | `[No abbreviations used.]` (replace `abbreviations` with other categories) | Message shown when the outline is empty. |
 | `fill` | `repeat([.], gap: 0.15em)` | Filler between the long form and page number. |
 | `gutter` | `auto` | Default spacing between rows and columns. |
 | `row-gutter` | `auto` | Spacing between rows. |
