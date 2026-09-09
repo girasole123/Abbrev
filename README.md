@@ -339,6 +339,23 @@ Use the regular `abbrev` function with the `category` parameter:
 #abbrev("km", form: "full", category: "unit")
 ```
 
+Or make your own function:
+```typst
+#let unit(
+  key,
+  form: "short",
+  suffix: none,
+  alt-long: none,
+) = abbrev(
+  key,
+  category: "unit",
+  form: form,
+  suffix: suffix,
+  alt-long: alt-long,
+)
+#unit("kg")
+```
+
 Custom categories can be used for units, mathematical notation, technical terminology, or any other group of entries.
 
 ## Category outlines
