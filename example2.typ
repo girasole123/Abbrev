@@ -154,6 +154,9 @@ This is page #this-page.
   title: [Units],
   category: "unit",
   level: 3,
+  separator: [:],
+  fill: line(length: 100%, start: (0%, 0.65em)),
+  gutter: 1em,
 )
 
 #pagebreak()
