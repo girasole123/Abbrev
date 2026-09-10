@@ -1,6 +1,6 @@
 # Abbrev
 
-**Abbrev** is a lightweight and language-independent Typst package for defining, using, and organizing abbreviations, glossary terms, symbols, acronyms, and initialisms.
+**Abbrev** is a lightweight and language-independent Typst package for defining, using, and organising abbreviations, glossary terms, symbols, acronyms, and initialisms.
 
 It provides a simple interface for common use cases, while also supporting more advanced uses:
 
@@ -11,9 +11,9 @@ It provides a simple interface for common use cases, while also supporting more 
 - custom categories;
 - styled short and long forms;
 - separate catalogs and outlines for each category;
-- customizable headings, separators, fillers, and spacing.
+- customisable headings, separators, fillers, and spacing.
 
-Abbrev does not impose a specific language or terminology system. You can customize headings and definitions to suit English, French, German, and many other languages.
+Abbrev does not impose a specific language or terminology system. You can customise headings and definitions to suit English, French, German, and many other languages.
 
 ## Installation
 
@@ -37,14 +37,14 @@ Then import it locally:
 
 ## Defining entries
 
-Version 0.2.0 provides specialized definition functions for different types of entries:
+Version 0.2.0 provides specialised definition functions for different types of entries:
 
 | Function | Default category | Intended use |
 |----------|------------------|--------------|
-| `abbrev-def` | `"abbrev"` | Abbreviations, initialisms, and custom categories |
-| `term-def` | `"term"` | Glossary terms |
-| `symbol-def` | `"symbol"` | Chemical, mathematical, currency, other symbols |
-| `acronym-def` | `"acronym"` | Acronyms |
+| `abbrev-def` | `"abbrev"` | Abbreviations, initialisms, and custom categories. |
+| `term-def` | `"term"` | Glossary terms (category **cannot** be modified). |
+| `symbol-def` | `"symbol"` | Chemical, mathematical, currency, other symbols (category **cannot** be modified). |
+| `acronym-def` | `"acronym"` | Acronyms (category **cannot** be modified). |
 
 Each function accepts a key and either a string or a dictionary containing `short` and `long` forms.
 
@@ -199,14 +199,14 @@ UK,United Kingdom
 
 ## Using entries
 
-This version provides specialized functions for referencing different types of entries:
+This version provides specialised functions for referencing different types of entries:
 
 | Function | Default category | Intended use |
 |----------|------------------|--------------|
-| `abbrev` | `"abbrev"` | Abbreviations, initialisms, and custom categories |
-| `term-entry` | `"term"` | Glossary terms |
-| `symbol-entry` | `"symbol"` | Chemical, mathematical, currency, other symbols |
-| `acronym-entry` | `"acronym"` | Acronyms |
+| `abbrev` | `"abbrev"` | Abbreviations, initialisms, and custom categories. |
+| `term-entry` | `"term"` | Glossary terms (category **cannot** be modified). |
+| `symbol-entry` | `"symbol"` | Chemical, mathematical, currency, other symbols (category **cannot** be modified). |
+| `acronym-entry` | `"acronym"` | Acronyms (category **cannot** be modified). |
 
 ### Abbreviations and initialisms
 
@@ -407,10 +407,10 @@ Generate category outlines using their dedicated functions. Page numbers in the 
 
 | Function | Default category | Intended use |
 |----------|------------------|--------------|
-| `abbrev-outline` | `"abbrev"` | Abbreviations, initialisms, and custom categories |
-| `term-outline` | `"term"` | Glossary terms |
-| `symbol-outline` | `"symbol"` | Chemical, mathematical, currency, other symbols |
-| `acronym-outline` | `"acronym"` | Acronyms |
+| `abbrev-outline` | `"abbrev"` | Abbreviations, initialisms, and custom categories. |
+| `term-outline` | `"term"` | Glossary terms (category **cannot** be modified). |
+| `symbol-outline` | `"symbol"` | Chemical, mathematical, currency, other symbols (category **cannot** be modified). |
+| `acronym-outline` | `"acronym"` | Acronyms (category **cannot** be modified). |
 
 ### Abbreviation outline
 
@@ -462,14 +462,14 @@ Use `abbrev-outline` to generate an outline for a custom category by specifying 
 
 Only entries that are used in the document are included in an outline. The page numbers link back to the corresponding occurrences.
 
-## Customizing outlines
+## Customising outlines
 
 The outline supports the following parameters:
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|
 | `title` | Category `name` (or `category` capitalised, e.g. `[Abbreviations]`) | Heading displayed above the outline. |
-| `category` | `"abbrev"` | Category whose entries are listed. |
+| `category` | `"abbrev"` | Category whose entries will be listed. Use **only** with the `abbrev-outline` function. |
 | `level` | `1` | Heading level. |
 | `numbering` | `none` | Heading numbering format (e.g. `"1."`). |
 | `outlined` | `false` | Whether the heading appears in the document outline. |
