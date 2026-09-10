@@ -140,7 +140,7 @@ This is page #this-page.
 #symbol-outline(level: 3)
 
 #acronym-outline(
-  title: [Acronyms and initialisms],
+  title: [Acronyms],
   level: 3,
 )
 
