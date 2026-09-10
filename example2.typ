@@ -129,24 +129,18 @@ This is page #this-page.
 
 #abbrev-outline(
   title: [Abbreviations and initialisms],
-  category: "abbrev",
   level: 3,
 )
 
-#abbrev-outline(
+#term-outline(
   title: [Glossary],
-  category: "term",
   level: 3,
 )
 
-#abbrev-outline(
-  category: "symbol",
-  level: 3,
-)
+#symbol-outline(level: 3)
 
-#abbrev-outline(
+#acronym-outline(
   title: [Acronyms and initialisms],
-  category: "acronym",
   level: 3,
 )
 
@@ -156,7 +150,7 @@ This is page #this-page.
   level: 3,
   separator: [:],
   fill: line(length: 100%, start: (0%, 0.65em)),
-  gutter: 1em,
+  gutter: 2em,
 )
 
 #pagebreak()
