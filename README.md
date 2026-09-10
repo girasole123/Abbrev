@@ -394,7 +394,7 @@ Custom categories can be used for units, mathematical notation, technical termin
 
 ## Category outlines
 
-Use `abbrev-outline` to generate an outline for a category.
+Generate category outlines using their dedicated functions. Page numbers in the outlines are clickable and link to the corresponding pages.
 
 ### Abbreviation outline
 
@@ -409,9 +409,8 @@ Use `abbrev-outline` to generate an outline for a category.
 ### Glossary outline
 
 ```typst
-#abbrev-outline(
+#term-outline(
   title: [Glossary],
-  category: "term",
   level: 3,
 )
 ```
@@ -419,9 +418,8 @@ Use `abbrev-outline` to generate an outline for a category.
 ### Symbol outline
 
 ```typst
-#abbrev-outline(
+#symbol-outline(
   title: [Symbols],
-  category: "symbol",
   level: 3,
 )
 ```
@@ -429,14 +427,15 @@ Use `abbrev-outline` to generate an outline for a category.
 ### Acronym outline
 
 ```typst
-#abbrev-outline(
+#acronym-outline(
   title: [Acronyms and initialisms],
-  category: "acronym",
   level: 3,
 )
 ```
 
 ### Custom-category outline
+
+Use `abbrev-outline` to generate an outline for a custom category by specifying the `category` parameter.
 
 ```typst
 #abbrev-outline(
