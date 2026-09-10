@@ -2,7 +2,7 @@
 
 **Abbrev** is a lightweight and language-independent Typst package for defining, using, and organizing abbreviations, glossary terms, symbols, acronyms, and initialisms.
 
-It provides a simple interface for common use cases while also supporting more advanced workflows:
+It provides a simple interface for common use cases, while also supporting more advanced uses:
 
 - abbreviations and initialisms;
 - acronyms;
@@ -10,7 +10,7 @@ It provides a simple interface for common use cases while also supporting more a
 - chemical, mathematical, and currency symbols;
 - custom categories;
 - styled short and long forms;
-- separate catalogues and outlines for each category;
+- separate catalogs and outlines for each category;
 - customizable headings, separators, fillers, and spacing.
 
 Abbrev does not impose a specific language or terminology system. You can customize headings and definitions to suit English, French, German, and many other languages.
@@ -48,7 +48,7 @@ Version 0.2.0 provides specialized definition functions for different types of e
 
 Each function accepts a key and either a string or a dictionary containing `short` and `long` forms.
 
-### Abbreviations
+### Abbreviations and initialisms
 
 Define a single abbreviation:
 
@@ -71,7 +71,7 @@ For example:
 
 ```typst
 #abbrev-def(
-  "i.e.",
+  "ie",
   (
     short: to-nnbsp("i. e."),
     long: "id est",
@@ -79,7 +79,7 @@ For example:
 )
 
 #abbrev-def(
-  "etc.",
+  "etc",
   (
     short: "etc.",
     long: "et cætera",
@@ -106,14 +106,12 @@ Definitions can contain styled content:
 #term-def(
   "Typst",
   (
-    short: [
-      #text(
+    short: [#text(
         "Typst",
         size: 1.05em,
         weight: "bold",
         fill: rgb("#239dad"),
-      )
-    ],
+      )],
     long: [A *language* for _typesetting_ documents],
   ),
 )
@@ -151,6 +149,50 @@ Use `acronym-def` for acronyms and initialisms:
   "laser",
   "light amplification by stimulated emission of radiation",
 )
+```
+### Define terms from a CSV or JSON file
+
+Instead of passing two parameters, you can pass a single parameter containing either a string or a path representing a file. The file must be in CSV or JSON format and define your terms and abbreviations.
+
+Because definitions are loaded from a text file, only plain strings are supported. Styled Typst content cannot be used.
+
+- **CSV:** Both terms and definitions must be plain text. Custom `short` and `long` forms are not supported.
+- **JSON:** Supports custom `short` and `long` forms, but all values must be plain strings.
+
+Alternatively, you can include a Typst file containing your definitions. This allows the use of styled text in the `short`and `long` fields. When doing so, import `Abbrev` in both your main document and the definitions file.
+
+`abbrevs.csv`:
+```CSV
+EU,European Union
+UK,United Kingdom
+```
+
+`acronyms.json`:
+```json
+{
+  "NASA": "National Aeronautics and Space Administration",
+  "SCUBA": {
+    "short": "Scuba",
+    "long": "Self-Contained Underwater Breathing Apparatus"
+  }
+}
+```
+
+`glossary.typ`:
+```typst title="file.typ"
+#import "@preview/abbrev:0.2.0": *
+#term-def((
+  "adjective": (short: "Adjective", long: [A word that *modifies* or *describes* a *noun* by naming an attribute.]),
+  "noun": (short: [Noun], long: [A word that represents a *person*, *place*, *thing*, or *idea*.])
+))
+```
+
+`document.typ`:
+```typst
+#import "@preview/abbrev:0.2.0": *
+#abbrev-def("abbrevs.csv")
+#acronym-def("acronyms.json")
+#include "glossary.typ"
 ```
 
 ## Using entries
@@ -417,7 +459,7 @@ The outline supports the following parameters:
 | `outlined` | `false` | Whether the heading appears in the document outline. |
 | `empty` | `[No abbreviations used.]` (replace `abbreviations` with other categories) | Message shown when the outline is empty. |
 | `fill` | `repeat([.], gap: 0.15em)` | Filler between the long form and page numbers. |
-| `gutter` | `auto` | Default spacing between rows and columns (if set to `auto`, defaults to `0.65em`). Overrides any individually specified values.|
+| `gutter` | `auto` | Default spacing between rows and columns (if set to `auto`, defaults to `0.65em`). Overrides any individually specified values of `row-gutter` and `column-gutter`.|
 | `row-gutter` | `auto` | Spacing between rows (if set to `auto`, defaults to `0.65em`). |
 | `column-gutter` | `auto` | Spacing between columns (if set to `auto`, defaults to `0.65em`). |
 | `separator` | `none` | Content inserted after the short form. |
@@ -499,83 +541,6 @@ Or set each value independently:
 
 When `gutter`, `row-gutter`, and `column-gutter` are set to `auto`, the spacing defaults to `0.65em`.
 
-## Complete example
-
-```typst
-#import "@preview/abbrev:0.2.0": *
-
-// Default abbreviation category
-#abbrev-def("GPU", "Graphics Processing Unit")
-#abbrev-def((
-  "CPU": "Central Processing Unit",
-  "XML": "Extensible Markup Language",
-))
-
-// Glossary
-#term-def("API", "Application Programming Interface")
-
-// Symbols
-#symbol-def(
-  "H2O",
-  (
-    short: [H#sub("2")O],
-    long: [water],
-  ),
-)
-
-// Acronyms
-#acronym-def(
-  "NASA",
-  "National Aeronautics and Space Administration",
-)
-
-// Custom category
-#add-category("unit", title: "Units")
-#abbrev-def("km", "kilometre", category: "unit")
-
-// Category outlines
-#abbrev-outline(
-  title: [Abbreviations],
-  category: "abbrev",
-)
-
-#abbrev-outline(
-  title: [Glossary],
-  category: "term",
-)
-
-#abbrev-outline(
-  title: [Symbols],
-  category: "symbol",
-)
-
-#abbrev-outline(
-  title: [Acronyms],
-  category: "acronym",
-)
-
-#abbrev-outline(
-  title: [Units],
-  category: "unit",
-)
-
-// Usage
-= Introduction
-
-The #abbr("GPU", form: "full") is commonly used in
-computer graphics.
-
-A #term-entry("API", form: "long") provides an interface
-for communicating with software.
-
-Water is represented by #symbol-entry("H2O", form: "full").
-
-The organization #acronym-entry("NASA", form: "full")
-conducts research in space science.
-
-The distance is #abbrev("km", form: "full", category: "unit").
-```
-
 ## Backward compatibility
 
 The older v0.1.x API remains available:
@@ -623,7 +588,7 @@ typst compile example.typ
 
 ## Examples and compiled PDFs
 
-The repository contains example documents demonstrating both the backward-compatible API and the new v0.2.0 functionality.
+The repository contains example documents demonstrating both the backward-compatible API (file `example.typ`) and the new v0.2.0 functionality (file `example2.typ`).
 
 To view the compiled PDFs without installing Typst:
 
