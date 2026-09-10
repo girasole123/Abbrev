@@ -26,4 +26,4 @@ jobs:
           name: pdf-output
           path: |
             example.pdf
-            exemple2.pdf
+            example2.pdf
