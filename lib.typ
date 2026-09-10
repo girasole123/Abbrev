@@ -489,7 +489,7 @@
 }
 
 // aliases for glossary terms, symbols, and acronyms
-// definitions
+// - definitions
 #let _def(..args) = {
   let positional = args.pos()
   let named = args.named()
@@ -500,7 +500,7 @@
 #let symbol-def(..args) = _def(..args, category: "symbol")
 #let acronym-def(..args) = _def(..args, category: "acronym")
 
-// entry
+// - entry
 #let _entry(
   key,
   form: "short",
@@ -520,6 +520,11 @@
 #let term-entry(..args) = _entry(..args, category: "term")
 #let symbol-entry(..args) = _entry(..args, category: "symbol")
 #let acronym-entry(..args) = _entry(..args, category: "acronym")
+
+// - outlines
+#let term-outline(..args) = abbrev-outline(..args, category: "term")
+#let symbol-outline(..args) = abbrev-outline(..args, category: "symbol")
+#let acronym-outline(..args) = abbrev-outline(..args, category: "acronym")
 
 
 // aliases for backward compatibility with v0.1.*
