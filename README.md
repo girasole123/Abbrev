@@ -469,16 +469,14 @@ The outline supports the following parameters:
 ```typst
 #abbrev-outline(
   title: [Liste des abréviations],
-  category: "abbrev",
 )
 ```
 
 ### Empty outlines
 
 ```typst
-#abbrev-outline(
+#term-outline(
   title: [Glossary],
-  category: "term",
   empty: [No glossary terms were used.],
 )
 ```
@@ -593,12 +591,10 @@ The repository contains example documents demonstrating both the backward-compat
 To view the compiled PDFs without installing Typst:
 
 1. Open the [Actions page](https://github.com/girasole123/Abbrev/actions).
-2. Select a successful compilation workflow run.
+2. Select the last successful compilation workflow run.
 3. Scroll down to the **Artifacts** section.
 4. Download the `pdf-output` artifact.
 5. Extract the downloaded ZIP file to access the PDFs generated from the examples.
-
-The artifact is a ZIP archive containing the PDFs produced by the GitHub Actions compilation workflow.
 
 ## License
 
