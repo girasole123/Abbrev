@@ -427,6 +427,7 @@ Generate category outlines using their dedicated functions. Page numbers in the 
 #term-outline(
   title: [Glossary],
   level: 3,
+  show-page: false,
 )
 ```
 
@@ -479,6 +480,7 @@ The outline supports the following parameters:
 | `row-gutter` | `auto` | Spacing between rows (if set to `auto`, defaults to `0.65em`). |
 | `column-gutter` | `auto` | Spacing between columns (if set to `auto`, defaults to `0.65em`). |
 | `separator` | `none` | Content inserted after the short form. |
+| `show-pages` | `true` | Whether pages and filler should appear in the outline. |
 
 ### Custom headings
 
