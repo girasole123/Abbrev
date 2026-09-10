@@ -50,6 +50,8 @@ Each function accepts a key and either a string or a dictionary containing `shor
 
 ### Abbreviations and initialisms
 
+Use  `abbrev-def` to define your abbreviations, your initialisms (abbreviations that are usually pronounced by spelling out each letter), or any type of abbreviation or term.
+
 Define a single abbreviation:
 
 ```typst
@@ -135,9 +137,9 @@ Use `symbol-def` for chemical, mathematical, or other symbols:
 #symbol-def("€", "Euro")
 ```
 
-### Acronyms and initialisms
+### Acronyms
 
-Use `acronym-def` for acronyms and initialisms:
+Use `acronym-def` for acronyms (that is, abbreviations whose letters are pronounced together as a single word):
 
 ```typst
 #acronym-def(
