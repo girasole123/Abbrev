@@ -41,10 +41,10 @@ Version 0.2.0 provides specialized definition functions for different types of e
 
 | Function | Default category | Intended use |
 |----------|------------------|--------------|
-| `abbrev-def` | `"abbrev"` | Abbreviations and initialisms |
+| `abbrev-def` | `"abbrev"` | Abbreviations, initialisms, and custom categories |
 | `term-def` | `"term"` | Glossary terms |
-| `symbol-def` | `"symbol"` | Chemical, mathematical, or currency symbols |
-| `acronym-def` | `"acronym"` | Acronyms and initialisms |
+| `symbol-def` | `"symbol"` | Chemical, mathematical, currency, other symbols |
+| `acronym-def` | `"acronym"` | Acronyms |
 
 Each function accepts a key and either a string or a dictionary containing `short` and `long` forms.
 
@@ -199,7 +199,16 @@ UK,United Kingdom
 
 ## Using entries
 
-### Abbreviations
+This version provides specialized functions for referencing different types of entries:
+
+| Function | Default category | Intended use |
+|----------|------------------|--------------|
+| `abbrev` | `"abbrev"` | Abbreviations, initialisms, and custom categories |
+| `term-entry` | `"term"` | Glossary terms |
+| `symbol-entry` | `"symbol"` | Chemical, mathematical, currency, other symbols |
+| `acronym-entry` | `"acronym"` | Acronyms |
+
+### Abbreviations and initialisms
 
 Use `abbrev` for entries in the default `"abbrev"` category:
 
@@ -237,7 +246,7 @@ The available forms are:
 - `long` — the long form only;
 - `full` — the long form followed by the short form in parentheses.
 
-### Suffixes
+### Suffix
 
 Use `suffix` to add a suffix to both forms. This is useful for plural or grammatical forms:
 
@@ -329,7 +338,7 @@ Other examples:
 #symbol-entry("€", form: "full")
 ```
 
-### Acronyms and initialisms
+### Acronyms
 
 Use `acronym-entry` to reference entries in the `acronym` category:
 
@@ -396,6 +405,13 @@ Custom categories can be used for units, mathematical notation, technical termin
 
 Generate category outlines using their dedicated functions. Page numbers in the outlines are clickable and link to the corresponding pages.
 
+| Function | Default category | Intended use |
+|----------|------------------|--------------|
+| `abbrev-outline` | `"abbrev"` | Abbreviations, initialisms, and custom categories |
+| `term-outline` | `"term"` | Glossary terms |
+| `symbol-outline` | `"symbol"` | Chemical, mathematical, currency, other symbols |
+| `acronym-outline` | `"acronym"` | Acronyms |
+
 ### Abbreviation outline
 
 ```typst
@@ -457,7 +473,7 @@ The outline supports the following parameters:
 | `level` | `1` | Heading level. |
 | `numbering` | `none` | Heading numbering format (e.g. `"1."`). |
 | `outlined` | `false` | Whether the heading appears in the document outline. |
-| `empty` | `[No abbreviations used.]` (replace `abbreviations` with other categories) | Message shown when the outline is empty. |
+| `empty` | `[No abbreviations used.]` (replace `abbreviations` with other categories, using the plural form) | Message shown when the outline is empty. |
 | `fill` | `repeat([.], gap: 0.15em)` | Filler between the long form and page numbers. |
 | `gutter` | `auto` | Default spacing between rows and columns (if set to `auto`, defaults to `0.65em`). Overrides any individually specified values of `row-gutter` and `column-gutter`.|
 | `row-gutter` | `auto` | Spacing between rows (if set to `auto`, defaults to `0.65em`). |
