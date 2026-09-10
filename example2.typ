@@ -12,7 +12,7 @@ This is page #this-page.
   "XML": "Extensible Markup Language",
 ))
 #abbrev-def("i.e.", (short: to-nnbsp("i. e."), long: "id est"))
-#abbrev-def("etc.", (short: "etc.", long: "et cætera"))
+#abbrev-def("etc.", (short: "etc.", long: "et cetera"))
 
 // Glossaire
 #term-def("API", "Application Programming Interface")
