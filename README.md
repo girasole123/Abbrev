@@ -401,7 +401,6 @@ Generate category outlines using their dedicated functions. Page numbers in the 
 ```typst
 #abbrev-outline(
   title: [Abbreviations and initialisms],
-  category: "abbrev",
   level: 3,
 )
 ```
