@@ -11,8 +11,8 @@ This is page #this-page.
   "CPU": "Central Processing Unit",
   "XML": "Extensible Markup Language",
 ))
-#abbrev-def("i.e.", (short: to-nnbsp("i. e."), long: "id est"))
-#abbrev-def("etc.", (short: "etc.", long: "et cetera"))
+#abbrev-def("ie", (short: to-nnbsp("i. e."), long: "id est"))
+#abbrev-def("etc", (short: "etc.", long: "et cetera"))
 
 // Glossaire
 #term-def("API", "Application Programming Interface")
@@ -59,7 +59,7 @@ This is page #this-page.
 
 
 == Abbreviations
-Use the default category (`"abbrev"`) for anything, or only for abbreviations (like "#abbrev("i.e.")").
+Use the default category (`"abbrev"`) for anything, or only for abbreviations (like "#abbrev("ie")").
 
 Short form: #abbrev("GPU").
 
@@ -91,7 +91,7 @@ Definition with styled content :
 
 
 == Symbols
-Use the symbol category (`"symbol"`) for chemical or other type of symbols, like currency symbols.
+Use the symbol category (`"symbol"`) for chemical or other types of symbols, like currency symbols.
 
 Short form: #symbol-entry("H2O").
 
@@ -157,9 +157,9 @@ This is page #this-page.
 == Use abbreviations anywhere in the document
 This is page #this-page.
 
-You can reference your abbreviations, glossary terms anywhere, #abbrev("etc.") in your document, but you must define them before their use.
+You can reference your abbreviations, glossary terms anywhere, #abbrev("etc") in your document, but you must define them before their use.
 
-For example: #abbrev("GPU", form: "full") as know as _#abbrev("GPU", alt-long: "Processeur graphique", form: "long")_ in French, #abbrev("etc.").
+For example: #abbrev("GPU", form: "full") as know as _#abbrev("GPU", alt-long: "Processeur graphique", form: "long")_ in French, #abbrev("etc")
 
 This costs 23 #symbol-entry("$"). If you want 23 #abbrev("kg", category: "unit") of #symbol-entry("H2O") maybe you are thirsty.
 
