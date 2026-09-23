@@ -606,6 +606,8 @@ typst compile example.typ
 
 The repository contains example documents demonstrating both the backward-compatible API (file `example.typ`) and the new v0.2.0 functionality (file `example2.typ`).
 
+For an example of possible integration between this library and Typst's standard term definitions, see `example-typst-term.typ`.
+
 To view the compiled PDFs without installing Typst:
 
 1. Open the [Actions page](https://github.com/girasole123/Abbrev/actions).
