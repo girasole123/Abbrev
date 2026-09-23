@@ -19,7 +19,7 @@ jobs:
         run: |
           typst compile example.typ
           typst compile example2.typ
-          typist compile example-typst-term.typ
+          typst compile example-typst-term.typ
       
       - name: Upload PDF as artifact
         uses: actions/upload-artifact@v6
